@@ -1,0 +1,102 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.calendar-view {
+  display: flex;
+  margin: 8px;
+}
+
+button {
+  background-color: #2468ab; /* Button background color */
+  color: #ffffff; /* Button text color */
+  border: 1px solid #2468ab;
+  padding: 8px 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  margin: 2px
+}
+
+
+button:hover {
+  background-color: #ffffff;
+  border: 1px solid #2468ab;
+  color: black /* Button background color on hover */
+}
+button:active {
+  background-color: #14488b;
+}
+
+table {
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+/* Style the table header */
+th {
+  background-color: #2468ab; /* Header background color */
+  color: #ffffff; /* Header text color */
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Style alternating rows for better readability */
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* Even row background color */
+}
+
+/* Define a hover effect for table rows */
+td:hover {
+  background-color: #3488cb55; /* Hovered row background color */
+}
+
+td:active {
+  background-color: #3498db; /* Change to your desired color */
+  color: #ffffff; /* Change text color if needed */
+}
+
+/* Style table cells (data cells) */
+td {
+  padding: 10px;
+  border: 1px solid #dcdcdc; /* Cell border color */
+  cursor: pointer;
+}
+
+/* Add some spacing between table cells */
+td:not(:last-child) {
+  margin-right: 5px;
+}
+
+.prayer-count-0 {
+  background-color: #ffffff
+}
+
+.prayer-count-1 {
+  background-color: #dee5f4
+}
+
+.prayer-count-2 {
+  background-color: #becbe9
+}
+
+.prayer-count-3 {
+  background-color: #9db1df
+}
+
+.prayer-count-4 {
+  background-color: #7d97d4
+}
+
+.prayer-count-5 {
+  background-color: #5c7dc9
+}
