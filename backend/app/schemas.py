@@ -1,21 +1,21 @@
 from datetime import datetime
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel
 from enum import Enum
 
 class PrayersEnum(str,Enum):
     Fajar = 'Fajr'
-    Duhur = 'Duhur'
+    Duhur = 'Dhuhr'
     Asr = 'Asr'
-    Maghreb = 'Maghreb'
+    Maghreb = 'Maghrib'
     Isha = 'Isha'
 
 class PrayerBaseSchema(BaseModel):
-    id: int | None = None
+    id: Optional[int] = None
     user: str
     prayer: PrayersEnum
-    date: datetime | None = None
-    updatedAt: datetime | None = None
+    date: Optional[datetime] = None
+    updatedAt: Optional[datetime] = None
 
     class Config:
         orm_mode = True

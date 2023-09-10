@@ -7,11 +7,10 @@ router = APIRouter()
 
 # get all records
 @router.get('/')
-def get_prayers(db: Session = Depends(get_db), limit: int = 10, page: int = 1, search: str = ''):
-    skip = (page - 1) * limit
+def get_prayers(db: Session = Depends(get_db), search: str = ''):
 
     prayers = db.query(models.Prayer).filter(
-        models.Prayer.prayer.contains(search)).limit(limit).offset(skip).all()
+        models.Prayer.prayer.contains(search)).all()
     return {'status': 'success', 'results': len(prayers), 'prayers': prayers}
 
 # create record
