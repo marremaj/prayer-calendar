@@ -1,21 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllPrayers, postPrayer } from "../../api";
 import CalendarTable from "./Calendar";
 
+const formatPrayers = (prayers) => {
+  const formattedPrayers = {}
+  for (const prayer of prayers) {
+    const date = prayer.date.split('T')[0]
+    formattedPrayers[date] = {...formattedPrayers[date], [prayer.prayer]: "Yes"}
+  }
+  return formattedPrayers
+}
+
 function CalendarView() {
-  const [data, setData] = useState({
-    "2023-09-10": {"fajr": "Yes"}, "2023-09-11": {"dhuhr": "Yes", "isha": "Yes"} 
-  })
+  const [data, setData] = useState({})
+
+  useEffect( () => {
+    fetchPrayers()
+  }, [])
+
+  const fetchPrayers = () => {
+    getAllPrayers().then((prayers) => {
+      console.log(prayers.data.prayers)
+      setData(formatPrayers(prayers.data.prayers))
+    })
+  }
+
   const [startDate, setStartDate] = useState("2023-09-10")
 
   const addData = (date, prayer) => {
-    const intermediateData = {...data}
-    if (date in data) {
-      intermediateData[date][prayer] = "Yes"
-    }
-    else {
-      intermediateData[date] = {[prayer]: "Yes"}
-    }
-    setData(intermediateData)
+    postPrayer(prayer, date, "Marina")
+    fetchPrayers()
   }
 
   const goForward = () => {  

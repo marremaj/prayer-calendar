@@ -1,0 +1,4 @@
+frontend/node_modules/**
+venv
+prayer-calendar.db
+settings.json
