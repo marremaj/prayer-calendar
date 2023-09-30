@@ -28,12 +28,13 @@ button {
 
 
 button:hover {
-  background-color: #ffffff;
-  border: 1px solid #2468ab;
-  color: black /* Button background color on hover */
+  background-color: #052e5a;
+  border: 1px solid #091624;
+  color: white /* Button background color on hover */
 }
 button:active {
-  background-color: #14488b;
+  background-color: white;
+  color: black;
 }
 
 table {
@@ -57,12 +58,13 @@ tr:nth-child(even) {
 
 /* Define a hover effect for table rows */
 td:hover {
-  background-color: #3488cb55; /* Hovered row background color */
+  background-color: #4362a8; /* Hovered row background color */
+  color: white;
 }
 
 td:active {
-  background-color: #3498db; /* Change to your desired color */
-  color: #ffffff; /* Change text color if needed */
+  background-color: #2f4b8d; /* Change to your desired color */
+  color: black; /* Change text color if needed */
 }
 
 /* Style table cells (data cells) */

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import PrayerRow from "./PrayerRow";
 
 function generateDateList(startDateString) {
   const startDate = new Date(startDateString);
@@ -14,14 +15,19 @@ function generateDateList(startDateString) {
   return dateList;
 }
 
-const CalendarTable = ({ data, startDate, addDataFunc }) => {
-  const [dateList, setDateList] = useState();
-
+function formatDate(date) {
   const options = {
     weekday: "short", // Short weekday name (e.g., "Sun")
     day: "numeric", // Day of the month (e.g., "3")
     month: "short", // Numeric month (e.g., "9")
   };
+  return new Intl.DateTimeFormat("en-US", options).format(
+    new Date(date)
+  )
+}
+
+const CalendarTable = ({ data, startDate, addDataFunc, removeDataFunc }) => {
+  const [dateList, setDateList] = useState();
 
   useEffect(() => {
     setDateList(generateDateList(startDate));
@@ -35,84 +41,17 @@ const CalendarTable = ({ data, startDate, addDataFunc }) => {
             <td />
             {dateList.map((date) => (
               <th key={date}>
-                {new Intl.DateTimeFormat("en-US", options).format(
-                  new Date(date)
-                )}
+                {formatDate(date)}
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Fajr</td>
-            {dateList.map((date) => (
-              <td
-                className={`prayer-count-${
-                  data[date] ? Object.keys(data[date]).length : 0
-                }`}
-                key={`${date}-fajr`}
-                onClick={() => addDataFunc(date, "Fajr")}
-              >
-                {data[date]?.["Fajr"]}
-              </td>
-            ))}
-          </tr>
-          <tr>
-            <td>Dhuhr</td>
-            {dateList.map((date) => (
-              <td
-                className={`prayer-count-${
-                  data[date] ? Object.keys(data[date]).length : 0
-                }`}
-                key={`${date}-dhuhr`}
-                onClick={() => addDataFunc(date, "Dhuhr")}
-              >
-                {data[date]?.["Dhuhr"]}
-              </td>
-            ))}
-          </tr>
-          <tr>
-            <td>Asr</td>
-            {dateList.map((date) => (
-              <td
-                className={`prayer-count-${
-                  data[date] ? Object.keys(data[date]).length : 0
-                }`}
-                key={`${date}-asr`}
-                onClick={() => addDataFunc(date, "Asr")}
-              >
-                {data[date]?.["Asr"]}
-              </td>
-            ))}
-          </tr>
-          <tr>
-            <td>Maghrib</td>
-            {dateList.map((date) => (
-              <td
-                className={`prayer-count-${
-                  data[date] ? Object.keys(data[date]).length : 0
-                }`}
-                key={`${date}-maghrib`}
-                onClick={() => addDataFunc(date, "Maghrib")}
-              >
-                {data[date]?.["Maghrib"]}
-              </td>
-            ))}
-          </tr>
-          <tr>
-            <td>Isha</td>
-            {dateList.map((date) => (
-              <td
-                className={`prayer-count-${
-                  data[date] ? Object.keys(data[date]).length : 0
-                }`}
-                key={`${date}-isha`}
-                onClick={() => addDataFunc(date, "Isha")}
-              >
-                {data[date]?.["Isha"]}
-              </td>
-            ))}
-          </tr>
+          <PrayerRow data={data} dates={dateList} addDataFunc={addDataFunc} removeDataFunc={removeDataFunc} name="fajr" />
+          <PrayerRow data={data} dates={dateList} addDataFunc={addDataFunc} removeDataFunc={removeDataFunc} name="dhuhr" />
+          <PrayerRow data={data} dates={dateList} addDataFunc={addDataFunc} removeDataFunc={removeDataFunc} name="asr" />
+          <PrayerRow data={data} dates={dateList} addDataFunc={addDataFunc} removeDataFunc={removeDataFunc} name="maghrib" />
+          <PrayerRow data={data} dates={dateList} addDataFunc={addDataFunc} removeDataFunc={removeDataFunc} name="isha" />
         </tbody>
       </table>
     </div>
